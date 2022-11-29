@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < Api::V1::BaseController
-  skip_before_action :verify_request, only: :login
+  skip_before_action :verify_request
 
   def login
     # 1 - Rails sends the code to Tencent along with app secret and app id
