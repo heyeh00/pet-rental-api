@@ -1,5 +1,5 @@
 class Api::V1::PetsController < Api::V1::BaseController
-  before_action :set_pet, only: %i[show update]
+  before_action :set_pet, only: %i[show update destroy]
 
   def index
     @pets = Pet.all
@@ -24,8 +24,14 @@ class Api::V1::PetsController < Api::V1::BaseController
     if @pet.update(pet_params)
       render json: { pet: @pet}
     else
-      render render json: { status: 'fail', msg: 'failed to create' }, status: 400
+      render json: { status: 'fail', msg: 'failed to create' }, status: 400
     end
+  end
+
+  def destroy
+    @pet.destroy
+    @pets = Pet.all
+    render json: { pet: @pets }
   end
 
   private
