@@ -3,9 +3,11 @@
 one:
   open_id: MyString
   name: MyString
+  image_url: MyString
   gender: MyString
 
 two:
   open_id: MyString
   name: MyString
+  image_url: MyString
   gender: MyString
