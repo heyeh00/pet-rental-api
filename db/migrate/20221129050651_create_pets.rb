@@ -7,7 +7,7 @@ class CreatePets < ActiveRecord::Migration[7.0]
       t.string :personality
       t.string :image_url
       t.string :gender
-      t.string :user_id
+      t.references :user, null: false, foreign_key: true
       t.string :address
 
       t.timestamps
