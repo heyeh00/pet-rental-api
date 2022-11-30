@@ -133,13 +133,15 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.9-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.9-x86_64-linux)
     nokogiri (1.13.9-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.9-x86_64-linux)
     pg (1.4.5)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
+    pundit (2.2.0)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-test (2.0.2)
@@ -225,8 +227,8 @@ GEM
 
 PLATFORMS
   arm64-darwin-21
-  x86_64-linux
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
@@ -237,6 +239,7 @@ DEPENDENCIES
   jwt
   pg (~> 1.1)
   puma (~> 5.0)
+  pundit
   rails (~> 7.0.4)
   rest-client
   selenium-webdriver
