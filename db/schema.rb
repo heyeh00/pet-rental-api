@@ -30,10 +30,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_050732) do
     t.string "personality"
     t.string "image_url"
     t.string "gender"
-    t.string "user_id"
+    t.bigint "user_id", null: false
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +48,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_29_050732) do
 
   add_foreign_key "bookings", "pets"
   add_foreign_key "bookings", "users"
+  add_foreign_key "pets", "users"
 end
