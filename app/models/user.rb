@@ -4,5 +4,4 @@ class User < ApplicationRecord
 
   validates :name, :gender, presence: true
   validates :open_id, presence: true, uniqueness: true
-
 end
