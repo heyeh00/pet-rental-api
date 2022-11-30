@@ -7,10 +7,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
     # 3 - Find user with openId in the database; if not, create a new user with this openId
     # 4 - Send a JWT that stores user information to MP
     user = User.find_or_create_by!(open_id: fetch_open_id['openid'])
-    p user
-    p user.valid?
-    p user.errors.messages
-
     response.set_header('Authorization', fetch_jwt_token(user))
 
     render json: { user: }
