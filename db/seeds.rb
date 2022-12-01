@@ -56,7 +56,7 @@ Pet.create(
 
 Pet.create(
   name: "Lolo",
-  animal: "Dog",
+  animal: "Cat",
   breed: "Li-hua",
   gender: "Female",
   user_id: 1,
