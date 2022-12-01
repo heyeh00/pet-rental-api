@@ -3,11 +3,8 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def index
     if params[:user_id].to_i == @current_user.id
-      p "#{params[:user_id]}"
-      p "IF SUCCESS"
-      p @current_user.pets
+      @pets = Pet.select { |pet| pet.user_id == params[:user_id].to_i }
     else
-      p "NO USER ID"
       @pets = Pet.all
     end
     render json: { pets: @pets }
@@ -19,6 +16,7 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   #add user_id of the pet after authentication
   def create
+    set_user
     @pet = Pet.new(pet_params)
     if @pet.save
       render json: { pet: @pet }
@@ -29,7 +27,7 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def update
     if @pet.update(pet_params)
-      render json: { pet: @pet}
+      render json: { pet: @pet }
     else
       render json: { status: 'fail', msg: 'failed to create' }, status: 400
     end
@@ -37,11 +35,11 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def destroy
     @pet.destroy
-    @pets = Pet.all
     render json: { pet: @pets }
   end
 
   private
+
   def set_pet
     @pet = Pet.find(params[:id])
   end
@@ -51,6 +49,6 @@ class Api::V1::PetsController < Api::V1::BaseController
   end
 
   def pet_params
-    params.require(:pet).permit(:name, :breed, :age, :personality, :gender, :address)
+    params.require(:pet).permit(:name, :breed, :age, :personality, :gender, :address, :animal, :user_id)
   end
 end

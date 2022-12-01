@@ -2,8 +2,9 @@ class Api::V1::BookingsController < Api::V1::BaseController
   before_action :verify_request
 
   def index
-    @bookings = Booking.all
-    render json: { bookings: @bookings }
+    @user = User.find(params[:user_id])
+    @pets = @user.pets
+    render json: { pets: @pets }
   end
 
   def create
