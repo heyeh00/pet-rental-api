@@ -10,6 +10,7 @@ class Api::V1::BookingsController < Api::V1::BaseController
       render json: { booking: @booking}
     else
       render json: { status: "fail", msg: "failed to create booking" }
+    end
   end
 
   private
