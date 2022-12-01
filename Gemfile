@@ -45,6 +45,7 @@ gem "bootsnap", require: false
 gem 'jwt'
 gem 'rest-client'
 gem 'pundit'
+gem 'faker'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

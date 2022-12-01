@@ -1,4 +1,6 @@
 class Api::V1::BookingsController < Api::V1::BaseController
+  before_action :verify_request
+
   def index
     @bookings = Booking.all
     render json: { bookings: @bookings }
@@ -7,9 +9,10 @@ class Api::V1::BookingsController < Api::V1::BaseController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
-      render json: { booking: @booking}
+      render json: { booking: @booking }
     else
       render json: { status: "fail", msg: "failed to create booking" }
+    end
   end
 
   private
