@@ -22,7 +22,7 @@ Pet.create(
   name: "Haha",
   breed: "GSD hybrids",
   gender: "Female",
-  age: 2,
+  age:3,
   image_url:"https://userblink.csdnimg.cn/a815b2e6fe8e47b3bfa70e9839fe14be.jpeg"
 )
 
