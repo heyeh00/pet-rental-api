@@ -35,7 +35,6 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def destroy
     @pet.destroy
-    @pets = Pet.all
     render json: { pet: @pets }
   end
 
