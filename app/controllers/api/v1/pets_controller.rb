@@ -3,9 +3,10 @@ class Api::V1::PetsController < Api::V1::BaseController
 
   def index
     if params[:user_id].to_i == @current_user.id
-      p "#{params[:user_id]}"
       p "IF SUCCESS"
-      p @current_user.pets
+      p "Params #{params[:user_id]}"
+      p @current_user.id
+      p @pets = Pet.select { |pet| pet.user_id == params[:user_id].to_i }
     else
       p "NO USER ID"
       @pets = Pet.all
