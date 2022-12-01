@@ -2,7 +2,14 @@ class Api::V1::PetsController < Api::V1::BaseController
   before_action :set_pet, only: %i[show update destroy]
 
   def index
-    @pets = Pet.all
+    if params[:user_id].to_i == @current_user.id
+      p "#{params[:user_id]}"
+      p "IF SUCCESS"
+      p @current_user.pets
+    else
+      p "NO USER ID"
+      @pets = Pet.all
+    end
     render json: { pets: @pets }
   end
 
@@ -37,6 +44,10 @@ class Api::V1::PetsController < Api::V1::BaseController
   private
   def set_pet
     @pet = Pet.find(params[:id])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
   def pet_params
