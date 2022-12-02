@@ -3,8 +3,13 @@ class Api::V1::BookingsController < Api::V1::BaseController
 
   def index
     @user = User.find(params[:user_id])
-    @pets = @user.pets
-    render json: { pets: @pets }
+    @pets = []
+    @user.bookings.each do |booking|
+      @pets.push(booking.pet)
+    end
+    @bookings = @user.bookings
+
+    render json: { pets: @pets, bookings: @bookings }
   end
 
   def create
@@ -14,6 +19,12 @@ class Api::V1::BookingsController < Api::V1::BaseController
     else
       render json: { status: "fail", msg: "failed to create booking" }
     end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:booking_id])
+    @booking.destroy
+    render json: { pets: @current_user.pets }
   end
 
   private
