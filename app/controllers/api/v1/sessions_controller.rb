@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < Api::V1::BaseController
-  skip_before_action :verify_request
+  skip_before_action :verify_request, only: :login
 
   def login
     # 1 - Rails sends the code to Tencent along with app secret and app id
@@ -26,7 +26,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   end
 
   def fetch_jwt_token(user)
-    payload = {user_id: user.id}
+    payload = { user_id: user.id }
     JWT.encode(payload, HMAC_SECRET, 'HS256')
   end
 end
