@@ -2,11 +2,11 @@ class Api::V1::PetsController < Api::V1::BaseController
   before_action :set_pet, only: %i[show update destroy]
 
   def index
-    if params[:user_id].to_i == @current_user.id
-      @pets = Pet.select { |pet| pet.user_id == params[:user_id].to_i }
-    else
+    # if params[:user_id].to_i == @current_user.id
+    #   @pets = Pet.select { |pet| pet.user_id == params[:user_id].to_i }
+    # else
       @pets = Pet.all
-    end
+    # end
     render json: { pets: @pets }
   end
 
